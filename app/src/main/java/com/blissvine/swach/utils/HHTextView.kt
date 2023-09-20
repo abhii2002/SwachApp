@@ -1,11 +1,11 @@
-package com.blissvine.lovelink.utils
+package com.blissvine.swach.utils
 
 import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatTextView
 
-class HHEditText(context: Context, attrs: AttributeSet): AppCompatEditText(context, attrs) {
+class HHTextView(context: Context, attrs: AttributeSet): AppCompatTextView(context, attrs) {
     init {
         applyFont()
     }

@@ -1,4 +1,4 @@
-package com.blissvine.swach
+package com.blissvine.swach.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
