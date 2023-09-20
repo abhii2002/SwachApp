@@ -1,4 +1,4 @@
-package com.blissvine.swach
+package com.blissvine.swach.activities
 
 import android.content.Intent
 import android.net.Uri
