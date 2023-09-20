@@ -72,6 +72,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView">
 
           <ImageView
+              android:id="@+id/scan_btn"
               android:layout_width="@dimen/_35sdp"
               android:layout_height="@dimen/_35sdp"
               android:tint="@color/white"
