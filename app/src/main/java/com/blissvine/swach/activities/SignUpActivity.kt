@@ -19,7 +19,6 @@ import android.widget.Toast
 import com.blissvine.swach.R
 import com.blissvine.swach.database.Authentication
 import com.blissvine.swach.databinding.ActivitySignUpBinding
-
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.CoroutineScope
@@ -27,18 +26,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType
-import okhttp3.Request
+
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
-import javax.xml.transform.ErrorListener
 
-=======
-import com.blissvine.swach.firestore.FireStoreClass
-import com.blissvine.swach.models.User
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
->>>>>>> Stashed changes
 
 class SignUpActivity : BaseActivity() {
     private lateinit var binding : ActivitySignUpBinding

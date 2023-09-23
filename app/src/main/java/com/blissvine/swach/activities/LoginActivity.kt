@@ -22,6 +22,7 @@ import com.blissvine.swach.database.Authentication
 import com.blissvine.swach.databinding.ActivityLoginBinding
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,12 +31,8 @@ import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
-import com.blissvine.swach.firestore.FireStoreClass
-import com.blissvine.swach.models.User
-import com.blissvine.swach.utils.Constants
-import com.google.firebase.auth.FirebaseAuth
 
-class LoginActivity : BaseActivity(), View.OnClickListener{
+class LoginActivity : BaseActivity(), View.OnClickListener {
     private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -44,9 +41,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
         setContentView(view)
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
-        }else {
+        } else {
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -80,13 +77,18 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
         val endIndex = binding.tvRegister.length() - 0
 
 
-        spannableString.setSpan(clickableSpan, indexStart, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE )
+        spannableString.setSpan(
+            clickableSpan,
+            indexStart,
+            endIndex,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
         binding.tvRegister.text = (spannableString)
         binding.tvRegister.movementMethod = LinkMovementMethod.getInstance()
         //end
 
         binding.tvForgetPassword.setOnClickListener(this@LoginActivity)
-        binding.btnLogin.setOnClickListener{
+        binding.btnLogin.setOnClickListener {
             loginUser()
         }
 
@@ -94,7 +96,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
     }
 
     override fun onClick(view: View?) {
-        if(view != null){
+        if (view != null) {
             when (view.id) {
                 R.id.tv_forget_password -> {
 
@@ -102,11 +104,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
                     startActivity(intent)
 
                 }
-                R.id.btn_login ->{
 
-                   //logInRegisteredUser()
+                R.id.btn_login -> {
 
-                    logInRegisteredUser()
 
                 }
             }
@@ -114,7 +114,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
     }
 
 
-    fun loginUserRetro(email: String,password: String) {
+    fun loginUserRetro(email: String, password: String) {
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://swachh-w8p5.onrender.com")
@@ -123,13 +123,13 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
         val service = retrofit.create(Authentication::class.java)
 
         val jsonObject = JSONObject()
-        jsonObject.put("email",email)
+        jsonObject.put("email", email)
         jsonObject.put("password", password)
 
         val jsonObjectString = jsonObject.toString()
 
-        val reqBody=
-            RequestBody.create(MediaType.parse("application/json; charset=utf-8"),jsonObjectString)
+        val reqBody =
+            RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObjectString)
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -145,7 +145,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
                     )
                     //hideProgressDialog()
                     Log.d("Pretty Printed JSON :", prettyJson)
-                    val intent : Intent= Intent(this@LoginActivity,MainActivity::class.java)
+                    val intent: Intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
 
                 } else {
@@ -161,12 +161,12 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
 
     private fun loginUser() {
 
-        val email: String =  binding.etLoginEmail.text.toString().trim { it <= ' ' }
+        val email: String = binding.etLoginEmail.text.toString().trim { it <= ' ' }
         val password: String = binding.etLoginPassword.text.toString().trim { it <= ' ' }
 
         if (validateRegisterDetails() && validateEmail(email) && validatePassword(password)) {
             showProgressDialog(resources.getString(R.string.please_wait))
-            loginUserRetro(email,password)
+            loginUserRetro(email, password)
 
         }
 
@@ -176,12 +176,20 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
         return when {
 
             TextUtils.isEmpty(binding.etLoginEmail.text.toString().trim() { it <= ' ' }) -> {
-                Toast.makeText(this,resources.getString(R.string.err_msg_enter_email), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.err_msg_enter_email),
+                    Toast.LENGTH_SHORT
+                ).show()
                 false
             }
 
             TextUtils.isEmpty(binding.etLoginPassword.text.toString().trim { it <= ' ' }) -> {
-                Toast.makeText(this,resources.getString(R.string.err_msg_enter_password),Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.err_msg_enter_password),
+                    Toast.LENGTH_SHORT
+                ).show()
                 false
             }
 
@@ -190,20 +198,20 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
                 true
             }
 
-
-
+        }
+    }
 
 
     private fun validateLoginDetails(): Boolean {
         return when {
 
-            TextUtils.isEmpty(binding.etLoginEmail.text.toString().trim { it <= ' '}) -> {
+            TextUtils.isEmpty(binding.etLoginEmail.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
                 false
             }
 
 
-            TextUtils.isEmpty(binding.etLoginPassword.text.toString().trim { it <= ' '}) -> {
+            TextUtils.isEmpty(binding.etLoginPassword.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_password), true)
                 false
             }
@@ -215,32 +223,12 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
         }
     }
 
-    private fun logInRegisteredUser(){
-        if(validateLoginDetails()) {
-
-            showProgressDialog(resources.getString(R.string.please_wait))
-
-            val email = binding.etLoginEmail.text.toString().trim{ it <= ' '}
-            val password = binding.etLoginPassword.text.toString().trim{ it <= ' '}
-
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if(task.isSuccessful){
-                        FireStoreClass().getUserDetails(this@LoginActivity)
-                    }else {
-                        hideProgressDialog()
-                        showErrorSnackBar(task.exception!!.message.toString(), true)
-                    }
-                }
-
-        }
-    }
 
 
 
     private fun validateEmail(email: String): Boolean {
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(this,"Invalid Email",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show()
             return false
         } else {
             return true
@@ -271,14 +259,13 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
     }
 
 
-}
-
-    fun userLoggedInSuccess(){
+    fun userLoggedInSuccess() {
         hideProgressDialog()
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
 
 
     }
+
 
 }
 
