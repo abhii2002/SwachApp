@@ -12,7 +12,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="Dialog.theme" parent="Theme.Material3.Light">
+    <style name="Dialog.theme" parent="Theme.MaterialComponents.Light.DarkActionBar">
 
         <!--        <item name="colorAccent">@color/colorPrimary</item>-->
         <!--        <item name="colorPrimary">@color/colorPrimary</item>-->

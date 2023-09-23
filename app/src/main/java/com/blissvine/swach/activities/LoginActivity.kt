@@ -4,7 +4,6 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -21,7 +20,6 @@ import android.widget.Toast
 import com.blissvine.swach.R
 import com.blissvine.swach.database.Authentication
 import com.blissvine.swach.databinding.ActivityLoginBinding
-import com.blissvine.swach.databinding.ActivityMainBinding
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.CoroutineScope
@@ -32,7 +30,10 @@ import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
-import com.blissvine.swach.activities.BaseActivity
+import com.blissvine.swach.firestore.FireStoreClass
+import com.blissvine.swach.models.User
+import com.blissvine.swach.utils.Constants
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : BaseActivity(), View.OnClickListener{
     private lateinit var binding: ActivityLoginBinding
@@ -102,11 +103,16 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
 
                 }
                 R.id.btn_login ->{
+
                    //logInRegisteredUser()
+
+                    logInRegisteredUser()
+
                 }
             }
         }
     }
+
 
     fun loginUserRetro(email: String,password: String) {
 
@@ -185,8 +191,51 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
             }
 
 
+
+
+
+    private fun validateLoginDetails(): Boolean {
+        return when {
+
+            TextUtils.isEmpty(binding.etLoginEmail.text.toString().trim { it <= ' '}) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
+                false
+            }
+
+
+            TextUtils.isEmpty(binding.etLoginPassword.text.toString().trim { it <= ' '}) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_password), true)
+                false
+            }
+
+            else -> {
+
+                true
+            }
         }
     }
+
+    private fun logInRegisteredUser(){
+        if(validateLoginDetails()) {
+
+            showProgressDialog(resources.getString(R.string.please_wait))
+
+            val email = binding.etLoginEmail.text.toString().trim{ it <= ' '}
+            val password = binding.etLoginPassword.text.toString().trim{ it <= ' '}
+
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if(task.isSuccessful){
+                        FireStoreClass().getUserDetails(this@LoginActivity)
+                    }else {
+                        hideProgressDialog()
+                        showErrorSnackBar(task.exception!!.message.toString(), true)
+                    }
+                }
+
+        }
+    }
+
 
 
     private fun validateEmail(email: String): Boolean {
@@ -223,3 +272,14 @@ class LoginActivity : BaseActivity(), View.OnClickListener{
 
 
 }
+
+    fun userLoggedInSuccess(){
+        hideProgressDialog()
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+
+
+    }
+
+}
+
+

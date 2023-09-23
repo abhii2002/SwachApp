@@ -13,36 +13,63 @@
         android:layout_height="250dp"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <EditText
-        android:id="@+id/editTextTextscan"
-        android:layout_width="280dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:background="@drawable/txt_background"
-        android:padding="10dp"
-        android:hint="Name"
-        android:inputType="text" />
+        app:boxStrokeColor="@color/colorPrimary"
+        app:hintTextColor="@color/colorPrimary"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        >
 
-    <EditText
+        <com.blissvine.swach.utils.HHEditText
+            android:id="@+id/editTextTextscan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/_11sdp"
+            android:hint="Name"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:boxStrokeColor="@color/colorPrimary"
+      app:hintTextColor="@color/colorPrimary"
+      android:layout_marginEnd="@dimen/_30sdp"
+      android:layout_marginStart="@dimen/_30sdp"
+    android:layout_marginTop="@dimen/_25sdp">
+
+
+    <com.blissvine.swach.utils.HHEditText
         android:id="@+id/editTextTextPostalAddressscan"
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:layout_gravity="center"
         android:hint="Address"
-        android:padding="10dp"
-        android:background="@drawable/txt_background"
+        android:padding="@dimen/_11sdp"
         android:inputType="textPostalAddress" />
 
-    <Button
+</com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <com.blissvine.swach.utils.HHButton
         android:id="@+id/submitBtn"
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
+
         android:layout_gravity="center"
         android:text="Submit"
         android:textColor="@color/white"
-        android:background="@drawable/scanbtn_background"/>
+       android:background="@drawable/button_background"/>
 
 </LinearLayout>
