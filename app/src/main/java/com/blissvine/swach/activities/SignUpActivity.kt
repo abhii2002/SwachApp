@@ -15,14 +15,18 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
 import com.blissvine.swach.R
+import com.blissvine.swach.database.Authentication
 import com.blissvine.swach.databinding.ActivitySignUpBinding
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.RequestBody
 import org.json.JSONObject
+import retrofit2.Retrofit
 import javax.xml.transform.ErrorListener
 
 
@@ -83,7 +87,7 @@ class SignUpActivity : BaseActivity() {
         binding.tvLogin.movementMethod = LinkMovementMethod.getInstance()
         //end
         binding.btnRegister.setOnClickListener {
-            registerUser()
+            registerUserRetro()
         }
 
 
@@ -91,6 +95,48 @@ class SignUpActivity : BaseActivity() {
 
 
 
+    }
+
+    fun registerUserRetro() {
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://swachh-w8p5.onrender.com")
+            .build()
+
+        val service = retrofit.create(Authentication::class.java)
+
+        val jsonObject = JSONObject()
+        jsonObject.put("name", "manvi1")
+        jsonObject.put("email", "manvi1@gmail.com")
+        jsonObject.put("password", "manvi1")
+
+
+        val jsonObjectString = jsonObject.toString()
+
+        val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
+
+        CoroutineScope(Dispatchers.IO).launch {
+            // Do the POST request and get response
+            val response = service.Register(requestBody)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    val prettyJson = gson.toJson(
+                        JsonParser.parseString(
+                            response.body()
+                                ?.string()
+                        )
+                    )
+
+                    Log.d("Pretty Printed JSON :", prettyJson)
+
+                } else {
+
+                    Log.e("RETROFIT_ERROR", response.code().toString())
+
+                }
+            }
+        }
     }
 
 
@@ -101,25 +147,6 @@ class SignUpActivity : BaseActivity() {
 
         if (validateRegisterDetails() && validateEmail(email) && validatePassword(password)) {
             showProgressDialog(resources.getString(R.string.please_wait))
-            val queue = Volley.newRequestQueue(this)
-            val url = "https://swachh-w8p5.onrender.com/register"
-            val body : JSONObject = JSONObject()
-            body.put("name", "manvi1");
-            body.put("email", "manvi1@gmail.com");
-            body.put("password", "manvi");
-
-
-            val jsonObjectRequest = JsonObjectRequest(
-                Request.Method.POST,url,body,
-                Response.Listener {
-                                  Log.d("result",it.toString())
-
-            },
-                Response.ErrorListener {
-                    Log.d("result",it.toString())
-
-            }
-                )
 
 
             /*FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
@@ -229,3 +256,7 @@ class SignUpActivity : BaseActivity() {
 
 
 }
+
+
+
+
