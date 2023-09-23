@@ -2,7 +2,6 @@ package com.blissvine.swach.activities
 
 import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -10,16 +9,22 @@ import android.text.TextPaint
 import android.text.TextUtils
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.VolleyError
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.blissvine.swach.R
 import com.blissvine.swach.databinding.ActivitySignUpBinding
-import com.blissvine.swach.models.User
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import org.json.JSONObject
+import javax.xml.transform.ErrorListener
+
 
 class SignUpActivity : BaseActivity() {
     private lateinit var binding : ActivitySignUpBinding
@@ -96,7 +101,28 @@ class SignUpActivity : BaseActivity() {
 
         if (validateRegisterDetails() && validateEmail(email) && validatePassword(password)) {
             showProgressDialog(resources.getString(R.string.please_wait))
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+            val queue = Volley.newRequestQueue(this)
+            val url = "https://swachh-w8p5.onrender.com/register"
+            val body : JSONObject = JSONObject()
+            body.put("name", "manvi1");
+            body.put("email", "manvi1@gmail.com");
+            body.put("password", "manvi");
+
+
+            val jsonObjectRequest = JsonObjectRequest(
+                Request.Method.POST,url,body,
+                Response.Listener {
+                                  Log.d("result",it.toString())
+
+            },
+                Response.ErrorListener {
+                    Log.d("result",it.toString())
+
+            }
+                )
+
+
+            /*FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
 
 
@@ -118,7 +144,7 @@ class SignUpActivity : BaseActivity() {
                         showErrorSnackBar(task.exception!!.message.toString(), true)
 
                     }
-                }
+                }*/
         }
 
     }

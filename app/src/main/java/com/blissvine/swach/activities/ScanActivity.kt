@@ -1,4 +1,4 @@
-package com.blissvine.swach
+package com.blissvine.swach.activities
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import com.blissvine.swach.R
 import com.blissvine.swach.databinding.ActivityMainBinding
 
 class ScanActivity : AppCompatActivity() {

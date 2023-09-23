@@ -12,7 +12,6 @@ import androidx.core.content.ContextCompat
 
 import com.blissvine.swach.R
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
 
 
 
@@ -80,7 +79,8 @@ open class BaseActivity : AppCompatActivity() {
 
 
     fun getCurrentUserID(): String{
-        return FirebaseAuth.getInstance().currentUser!!.uid
+        return "hii";
+        //return FirebaseAuth.getInstance().currentUser!!.uid
     }
 
 }
