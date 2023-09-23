@@ -1,5 +1,6 @@
 package com.blissvine.swach.activities
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -24,6 +25,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.MediaType
+import okhttp3.Request
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Retrofit
@@ -87,7 +90,7 @@ class SignUpActivity : BaseActivity() {
         binding.tvLogin.movementMethod = LinkMovementMethod.getInstance()
         //end
         binding.btnRegister.setOnClickListener {
-            registerUserRetro()
+            registerUser()
         }
 
 
@@ -97,7 +100,7 @@ class SignUpActivity : BaseActivity() {
 
     }
 
-    fun registerUserRetro() {
+    fun registerUserRetro(name: String,email: String,password: String) {
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://swachh-w8p5.onrender.com")
@@ -106,18 +109,17 @@ class SignUpActivity : BaseActivity() {
         val service = retrofit.create(Authentication::class.java)
 
         val jsonObject = JSONObject()
-        jsonObject.put("name", "manvi1")
-        jsonObject.put("email", "manvi1@gmail.com")
-        jsonObject.put("password", "manvi1")
-
+        jsonObject.put("name", name)
+        jsonObject.put("email", email)
+        jsonObject.put("password", password)
 
         val jsonObjectString = jsonObject.toString()
 
-        val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
+        val reqBody=RequestBody.create(MediaType.parse("application/json; charset=utf-8"),jsonObjectString)
 
         CoroutineScope(Dispatchers.IO).launch {
-            // Do the POST request and get response
-            val response = service.Register(requestBody)
+
+            val response = service.Register(reqBody)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val gson = GsonBuilder().setPrettyPrinting().create()
@@ -127,10 +129,14 @@ class SignUpActivity : BaseActivity() {
                                 ?.string()
                         )
                     )
-
+                    hideProgressDialog()
                     Log.d("Pretty Printed JSON :", prettyJson)
+                    val intent : Intent= Intent(this@SignUpActivity,MainActivity::class.java)
+                    startActivity(intent)
 
                 } else {
+                    hideProgressDialog()
+                    showErrorSnackBar(response.code().toString(), true)
 
                     Log.e("RETROFIT_ERROR", response.code().toString())
 
@@ -142,13 +148,13 @@ class SignUpActivity : BaseActivity() {
 
     private fun registerUser() {
 
+        val name : String = binding.etRegisterName.text.toString().trim { it <= ' ' }
         val email: String =  binding.etRegisterEmail.text.toString().trim { it <= ' ' }
         val password: String = binding.etRegisterPassword.text.toString().trim { it <= ' ' }
 
         if (validateRegisterDetails() && validateEmail(email) && validatePassword(password)) {
             showProgressDialog(resources.getString(R.string.please_wait))
-
-
+            registerUserRetro(name,email,password)
             /*FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
 
