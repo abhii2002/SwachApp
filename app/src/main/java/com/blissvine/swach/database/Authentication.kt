@@ -18,7 +18,7 @@ interface Authentication {
     @POST("/login")
     suspend fun Login(@Body requestBody: RequestBody): Response<ResponseBody>
 
-
+//this is the photopost method
     @Multipart
     @POST("/photopost")
     suspend fun uploadAttachment( @Part("name") name: RequestBody, @Part("location") location: RequestBody,
