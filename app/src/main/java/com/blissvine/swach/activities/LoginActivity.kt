@@ -116,7 +116,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     fun loginUserRetro(email: String, password: String) {
 
-
         val retrofit = Retrofit.Builder()
             .baseUrl("https://swachh-w8p5.onrender.com")
             .build()
@@ -135,9 +134,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         CoroutineScope(Dispatchers.IO).launch {
 
             val response = service.Login(reqBody)
-
             withContext(Dispatchers.Main) {
-
                 if (response.isSuccessful) {
                     val gson = GsonBuilder().setPrettyPrinting().create()
                     val prettyJson = gson.toJson(
@@ -146,13 +143,13 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                 ?.string()
                         )
                     )
-                    hideProgressDialog()
+                    //hideProgressDialog()
                     Log.d("Pretty Printed JSON :", prettyJson)
                     val intent: Intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
 
-                } else  {
-                    hideProgressDialog()
+                } else {
+                    //hideProgressDialog()
                     showErrorSnackBar(response.code().toString(), true)
 
                     Log.e("RETROFIT_ERROR", response.code().toString())
@@ -161,8 +158,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             }
         }
     }
-
-
 
     private fun loginUser() {
 
@@ -270,8 +265,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
 
     }
-
-
 
 
 }

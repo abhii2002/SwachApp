@@ -154,7 +154,29 @@ class SignUpActivity : BaseActivity() {
         if (validateRegisterDetails() && validateEmail(email) && validatePassword(password)) {
             showProgressDialog(resources.getString(R.string.please_wait))
             registerUserRetro(name,email,password)
+            /*FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
 
+
+                    if (task.isSuccessful) {
+                        val firebaseUser: FirebaseUser = task.result!!.user!!
+                        val user = User(
+                            firebaseUser.uid,
+                            binding.etRegisterName.text.toString().trim { it <= ' ' },
+                            binding.etRegisterEmail.text.toString().trim() { it <= ' ' }
+                        )
+
+                        FireStoreClass().registerUser(this@SignUpActivity, user)
+
+//                    FirebaseAuth.getInstance().signOut()
+//                    finish()
+
+                    } else {
+                        hideProgressDialog()
+                        showErrorSnackBar(task.exception!!.message.toString(), true)
+
+                    }
+                }*/
         }
 
     }

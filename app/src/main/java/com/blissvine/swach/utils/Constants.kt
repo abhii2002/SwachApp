@@ -15,8 +15,14 @@ object Constants {
     const val EXTRA_USER_DETAILS: String = "extra_user_details"
     const val READ_STORAGE_PERMISSION_CODE = 2
     const val PICK_IMAGE_REQUEST_CODE = 1
-    const val BASE_URL = "https://swachh-w8p5.onrender.com"
-
+    const val MALE: String = "male"
+    const val FEMALE: String  = "female"
+    const val NAME: String = "name"
+    const val MOBILE: String = "mobile"
+    const val GENDER: String = "gender"
+    const val IMAGE: String = "image"
+    const val USER_PROFILE_IMAGE: String = "User_Profile_Image"
+    const val COMPLETE_PROFILE: String = "profileCompleted"
 
 
 

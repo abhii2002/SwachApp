@@ -1,11 +1,15 @@
 package com.blissvine.swach.activities
 
+<<<<<<< HEAD
 import android.Manifest
 import android.R.attr.country
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
+=======
+import android.content.Intent
+>>>>>>> 747f1ba180c21bf6baeb5ba31cb3f9dfc4a094f9
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -15,8 +19,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
-import androidx.lifecycle.ViewModelProvider
 import com.blissvine.swach.R
+<<<<<<< HEAD
 import com.blissvine.swach.databinding.ActivityScanBinding
 import com.blissvine.swach.viewmodel.MainViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -24,10 +28,27 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnSuccessListener
 import java.io.IOException
 import java.util.Locale
+=======
+import com.blissvine.swach.database.Authentication
+import com.blissvine.swach.databinding.ActivityMainBinding
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Retrofit
+import java.io.File
+import java.io.FileOutputStream
+>>>>>>> 747f1ba180c21bf6baeb5ba31cb3f9dfc4a094f9
 
 
 class ScanActivity : AppCompatActivity() {
 
+<<<<<<< HEAD
     var fusedLocationProviderClient: FusedLocationProviderClient? = null
 
     private val REQUEST_CODE = 100
@@ -37,10 +58,14 @@ class ScanActivity : AppCompatActivity() {
     private val viewModel : MainViewModel by lazy {
         ViewModelProvider(this@ScanActivity).get(MainViewModel::class.java)
     }
+=======
+    private lateinit var binding : ActivityMainBinding
+    lateinit var file : File
+    lateinit var outputStream: FileOutputStream
+>>>>>>> 747f1ba180c21bf6baeb5ba31cb3f9dfc4a094f9
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityScanBinding.inflate(layoutInflater)
-        val view  = binding.root
         super.onCreate(savedInstanceState)
+<<<<<<< HEAD
         setContentView(view)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -51,26 +76,42 @@ class ScanActivity : AppCompatActivity() {
 
 
 
+=======
+        setContentView(R.layout.activity_scan)
+>>>>>>> 747f1ba180c21bf6baeb5ba31cb3f9dfc4a094f9
         val img=intent.getStringExtra("image")
         val imageView : ImageView =findViewById(R.id.imageViewscan)
 
         if(img!=null){
             Log.d("intent",img)
             imageView.setImageURI(img.toUri())
+            val filesDir=applicationContext.filesDir
+            file=File(filesDir,"image.png")
+            val inputStream = contentResolver.openInputStream(img.toUri())
+            outputStream = FileOutputStream(file)
+            inputStream!!.copyTo(outputStream)
+
         }
         val btn : Button = findViewById(R.id.submitBtn)
+
+        val n1 :EditText = findViewById(R.id.editTextTextscan)
+        val n2 :EditText = findViewById(R.id.editTextTextPostalAddressscan)
         btn.setOnClickListener {
+<<<<<<< HEAD
           //  Toast.makeText(this,"Button clicked",Toast.LENGTH_SHORT).show()
 
              getLastLocation()
 
+=======
+            Toast.makeText(this,"Button clicked",Toast.LENGTH_SHORT).show()
+            if(img!=null){
+                uploadImage(file,n1.text.toString(),n2.text.toString())
+            }
+>>>>>>> 747f1ba180c21bf6baeb5ba31cb3f9dfc4a094f9
         }
-
-
-
-
     }
 
+<<<<<<< HEAD
     private fun getLastLocation() {
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -131,6 +172,27 @@ class ScanActivity : AppCompatActivity() {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
+=======
+    fun uploadImage(file: File , name : String,location : String) {
 
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://swachh-w8p5.onrender.com")
+            .build()
+>>>>>>> 747f1ba180c21bf6baeb5ba31cb3f9dfc4a094f9
 
+        val service = retrofit.create(Authentication::class.java)
+
+        //val name="manvi"
+        //val location="noida"
+        val name1: RequestBody = RequestBody.create(MediaType.parse("text/plain"), name)
+        val location1: RequestBody = RequestBody.create(MediaType.parse("text/plain"), location)
+
+        val requestBody =   RequestBody.create(MediaType.parse("image/*"), file)
+        val part = MultipartBody.Part.createFormData("photo",file.name,requestBody)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val res=service.uploadAttachment(name1,location1,part)
+            Log.d("imageres",res.toString())
+        }
+    }
 }

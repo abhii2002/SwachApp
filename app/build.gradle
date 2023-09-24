@@ -42,14 +42,13 @@ android {
 
 dependencies {
 
-
-      def moshi_version = "1.9.3"
-     def retrofit_version = "2.9.0"
-    def coroutine = "1.5.1"
-    def coroutineScope = "2.3.1"
+    
 
 
 
+
+    //Desugar JDK
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.2'
 
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
@@ -86,6 +85,7 @@ dependencies {
    // implementation 'com.github.bumptech.glide:compiler:4.16.0'
 
 
+<<<<<<< HEAD
     //moshi : it will help us to convert json data into kotlin objects that can be easily used.
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
 
@@ -115,6 +115,8 @@ dependencies {
 
 
 
+=======
+>>>>>>> 747f1ba180c21bf6baeb5ba31cb3f9dfc4a094f9
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
