@@ -51,25 +51,12 @@
             </intent-filter>
         </activity>
 
-<<<<<<< Updated upstream
-=======
-
-            <activity
-            android:name=".activities.MainActivity"
-            android:exported="true" />
-
->>>>>>> Stashed changes
         <activity
             android:name=".activities.ScanActivity"
             android:exported="true">
 
         </activity>
-<<<<<<< Updated upstream
-=======
 
-
-
->>>>>>> Stashed changes
     </application>
 
 </manifest>

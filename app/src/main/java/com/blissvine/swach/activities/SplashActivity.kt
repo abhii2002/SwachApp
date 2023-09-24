@@ -7,7 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
 import com.blissvine.swach.R
-import com.blissvine.swach.firestore.FireStoreClass
+
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,12 +21,13 @@ class SplashActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
 
-            val currentUserID = FireStoreClass().getCurrentUserID()
+            /*val currentUserID = FireStoreClass().getCurrentUserID()
             if (currentUserID.isNotEmpty()){
                 startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             }else {
                 startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-            }
+            }*/
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             finish()
 
                finish()

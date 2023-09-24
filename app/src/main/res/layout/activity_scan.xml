@@ -45,16 +45,7 @@
     android:layout_marginTop="@dimen/_25sdp">
 
 
-    <com.blissvine.swach.utils.HHEditText
-        android:id="@+id/editTextTextPostalAddressscan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:hint="Address"
-        android:padding="@dimen/_11sdp"
-        android:inputType="textPostalAddress" />
-
-</com.google.android.material.textfield.TextInputLayout>
+  </com.google.android.material.textfield.TextInputLayout>
 
 
 
@@ -71,5 +62,14 @@
         android:text="Submit"
         android:textColor="@color/white"
        android:background="@drawable/button_background"/>
+
+    <com.blissvine.swach.utils.HHEditText
+        android:id="@+id/editTextTextPostalAddressscan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Address"
+        android:inputType="textPostalAddress"
+        android:padding="@dimen/_11sdp" />
 
 </LinearLayout>
