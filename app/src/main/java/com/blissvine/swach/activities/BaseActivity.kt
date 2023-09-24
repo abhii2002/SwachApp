@@ -83,4 +83,11 @@ open class BaseActivity : AppCompatActivity() {
         //return FirebaseAuth.getInstance().currentUser!!.uid
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if (mProgressDialog != null && mProgressDialog.isShowing) {
+            mProgressDialog.cancel()
+        }
+    }
+
 }

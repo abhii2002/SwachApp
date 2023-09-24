@@ -1,5 +1,6 @@
 package com.blissvine.swach.database
 
+import com.blissvine.swach.models.PhotoData
 import com.blissvine.swach.models.RetroUser
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -14,4 +15,10 @@ interface Authentication {
 
     @POST("/login")
     suspend fun Login(@Body requestBody: RequestBody): Response<ResponseBody>
+
+    @POST("/photopost")
+    suspend fun photopost(@Body requestBody: RequestBody): Response<ResponseBody>
+
+
+
 }

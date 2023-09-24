@@ -24,7 +24,7 @@
         >
 
         <com.blissvine.swach.utils.HHEditText
-            android:id="@+id/editTextTextscan"
+            android:id="@+id/photoname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
