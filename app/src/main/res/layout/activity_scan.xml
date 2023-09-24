@@ -37,7 +37,7 @@
 
   <com.google.android.material.textfield.TextInputLayout
     android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="@dimen/_90sdp"
       app:boxStrokeColor="@color/colorPrimary"
       app:hintTextColor="@color/colorPrimary"
       android:layout_marginEnd="@dimen/_30sdp"
@@ -48,11 +48,13 @@
     <com.blissvine.swach.utils.HHEditText
         android:id="@+id/editTextTextPostalAddressscan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:hint="Address"
         android:padding="@dimen/_11sdp"
-        android:inputType="textPostalAddress" />
+        android:inputType="textMultiLine" />
+
+
 
 </com.google.android.material.textfield.TextInputLayout>
 
