@@ -24,7 +24,7 @@
         >
 
         <com.blissvine.swach.utils.HHEditText
-            android:id="@+id/editTextTextscan"
+            android:id="@+id/photoname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -45,22 +45,21 @@
     android:layout_marginTop="@dimen/_25sdp">
 
 
-<<<<<<< HEAD
+
     <com.blissvine.swach.utils.HHEditText
-        android:id="@+id/editTextTextPostalAddressscan"
+        android:id="@+id/photoaddresss"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:hint="Address"
         android:padding="@dimen/_11sdp"
+        android:focusable="false"
         android:inputType="textMultiLine" />
 
 
 
+
 </com.google.android.material.textfield.TextInputLayout>
-=======
-  </com.google.android.material.textfield.TextInputLayout>
->>>>>>> 747f1ba180c21bf6baeb5ba31cb3f9dfc4a094f9
 
 
 
@@ -78,13 +77,5 @@
         android:textColor="@color/white"
        android:background="@drawable/button_background"/>
 
-    <com.blissvine.swach.utils.HHEditText
-        android:id="@+id/editTextTextPostalAddressscan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:hint="Address"
-        android:inputType="textPostalAddress"
-        android:padding="@dimen/_11sdp" />
 
 </LinearLayout>
