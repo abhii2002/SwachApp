@@ -8,20 +8,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/_5sdp"
         android:paddingTop="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_5sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview1"
             android:layout_width="170dp"
-            android:layout_height="260dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="44dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="15dp"
             app:cardBackgroundColor="#B5E47D"
             app:cardCornerRadius="30dp"
@@ -33,48 +35,27 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/main_image" />
+                android:src="@drawable/green_dustbin" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="60dp"
-                android:text="Image 1"
-                android:textSize="20dp" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardview2"
-            android:layout_width="170dp"
-            android:layout_height="260dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="44dp"
-            android:layout_marginEnd="12dp"
-            app:cardBackgroundColor="#FF9891"
-            app:cardCornerRadius="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardview1"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/main_image" />
-
+                android:layout_marginTop="20dp"
+                android:text="Green Dustbin"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="60dp"
-                android:text="Image 2"
-                android:textSize="20dp" />
+                android:layout_marginTop="80dp"
+                android:textAlignment="center"
+                android:text="Office Stationary,\nDisposable\nPaper cups,\nKitchen Waste"
+                android:textSize="15dp"
+                android:textFontWeight="700"/>
 
 
         </androidx.cardview.widget.CardView>
@@ -82,10 +63,10 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview3"
             android:layout_width="170dp"
-            android:layout_height="260dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="44dp"
-            app:cardBackgroundColor="#82A7F1"
+            android:layout_height="300dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="40dp"
+            app:cardBackgroundColor="#AFCAFF"
             app:cardCornerRadius="30dp"
             app:layout_constraintEnd_toStartOf="@id/cardview4"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,17 +76,28 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/main_image" />
+                android:src="@drawable/blue_dustbin" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="60dp"
-                android:text="Image 3"
-                android:textSize="20dp" />
+                android:layout_marginTop="20dp"
+                android:text="Blue Dustbin"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="80dp"
+                android:text="All types of\nGlass bottles\nand Articles\nOutcarded and\nDiscarded medicines"
+                android:textSize="15dp"
+                android:textFontWeight="700"
+                android:textAlignment="center"/>
 
 
         </androidx.cardview.widget.CardView>
@@ -113,11 +105,11 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview4"
             android:layout_width="170dp"
-            android:layout_height="260dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="44dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="12dp"
-            app:cardBackgroundColor="#F5FF90"
+            app:cardBackgroundColor="#F0FB80"
             app:cardCornerRadius="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardview3"
@@ -127,17 +119,68 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/main_image" />
+                android:src="@drawable/yellow_dustbin" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="60dp"
-                android:text="Image 4"
-                android:textSize="20dp" />
+                android:layout_marginTop="20dp"
+                android:text="Yellow Dustbin"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="80dp"
+                android:text="Infectious waste\nBandages,Gauses\nCotton or anything\ncontact with human\nfluids or body parts"
+                android:textSize="15dp"
+                android:textFontWeight="700"
+                android:textAlignment="center"/>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview2"
+            android:layout_width="170dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            app:cardBackgroundColor="#CDCDCD"
+            app:cardCornerRadius="30dp"
+            app:layout_constraintStart_toEndOf="@+id/cardview1"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/black_dustbin" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Black Dustbin"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="80dp"
+                android:text="Needles, without\nSyringes,Blades\nSharps and all\nMetal Articles"
+                android:textSize="15dp"
+                android:textAlignment="center"/>
+
 
 
         </androidx.cardview.widget.CardView>
