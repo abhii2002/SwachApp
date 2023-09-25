@@ -73,6 +73,10 @@ class MainActivity : BaseActivity() {
             LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
         binding.rvGuidlinesNotice.adapter = guidelinesAdapter
 
+        binding.dailyWaste.setOnClickListener {
+            startActivity(Intent(this,DailyWasteActivity::class.java))
+        }
+
 
 
     }
