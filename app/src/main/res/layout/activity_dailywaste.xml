@@ -51,6 +51,17 @@
                     android:text="Green Dustbin"
                     android:textSize="20dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:text="Office stationary, Disposable paper cups, Tissue paper, Kitchen Waste"
+                    android:textSize="@dimen/_10ssp" />
+
 
             </LinearLayout>
 
@@ -91,6 +102,17 @@
                     android:layout_marginTop="20dp"
                     android:text="Red Dustbin"
                     android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:text="Plastic waste such as catheters, Injections, Syringes, Bottels"
+                    android:textSize="@dimen/_10ssp" />
 
 
             </LinearLayout>
@@ -134,6 +156,17 @@
                     android:text="Blue Dustbin"
                     android:textSize="20dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:text="All type of glass bottles and articles, outcarded/discarded medicines"
+                    android:textSize="@dimen/_10ssp" />
+
 
             </LinearLayout>
 
@@ -176,6 +209,16 @@
                     android:text="Black Dustbin"
                     android:textSize="20dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:text="Needles without syringes, Blades, Sharps and All metal articals"
+                    android:textSize="@dimen/_10ssp" />
 
             </LinearLayout>
 

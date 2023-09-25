@@ -47,23 +47,23 @@ class MainActivity : BaseActivity() {
         val dummyGuidlinesData = listOf<GuideLinesModel>(
             GuideLinesModel(
                 "Dummy text",
-                "Hello hi, attitude bye, lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
+                "daskdnidni lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
             ),
             GuideLinesModel(
                 "Dummy text",
-                "Hello hi, attitude bye, lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
+                "dasjdbsaudbauod lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
             ),
             GuideLinesModel(
                 "Dummy text",
-                "Hello hi, attitude bye, lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
+                "dsadasdasd lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
             ),
             GuideLinesModel(
                 "Dummy text",
-                "Hello hi, attitude bye, lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
+                "dasjdiabuab lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
             ),
             GuideLinesModel(
                 "Dummy text",
-                "Hello hi, attitude bye, lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
+                "dsadihdi lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
             ),
 
             )
@@ -75,6 +75,10 @@ class MainActivity : BaseActivity() {
 
         binding.dailyWaste.setOnClickListener {
             startActivity(Intent(this,DailyWasteActivity::class.java))
+        }
+
+        binding.recycledWaste.setOnClickListener {
+            startActivity(Intent(this, RecycledWasteActivity::class.java))
         }
 
 
