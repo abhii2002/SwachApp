@@ -2,16 +2,24 @@ package com.blissvine.swach.activities
 
 
 import android.Manifest
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.location.LocationManager
+import android.net.Uri
 
 import android.os.Bundle
+import android.os.Looper
+import android.provider.Settings
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -26,6 +34,12 @@ import java.io.IOException
 import java.util.Locale
 
 import com.blissvine.swach.database.Authentication
+import com.google.android.gms.location.LocationRequest
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,10 +61,7 @@ class ScanActivity : AppCompatActivity() {
     private val REQUEST_CODE = 100
 
     private lateinit var binding : ActivityScanBinding
-    //private lateinit var viewModel: MainViewModel
-//    private val viewModel : MainViewModel by lazy {
-//        ViewModelProvider(this@ScanActivity).get(MainViewModel::class.java)
-//    }
+
 
 
     lateinit var file : File
@@ -64,7 +75,7 @@ class ScanActivity : AppCompatActivity() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
 
-        getLastLocation()
+
 
         val img=intent.getStringExtra("image")
         val imageView : ImageView =findViewById(R.id.imageViewscan)
@@ -88,21 +99,63 @@ class ScanActivity : AppCompatActivity() {
             }
 
         }
+
+        binding.selectCurrentLocation.setOnClickListener {
+            getLastLocation()
+        }
+
+
+
+
+        if(!isLocationEnabled()){
+            Toast.makeText(this, "Your location provider is turned off. Please turn it on.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            startActivity(intent)
+
+        }else{
+
+            Dexter.withActivity(this).withPermissions(
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ).withListener(object: MultiplePermissionsListener {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                    if(report!!.areAllPermissionsGranted()){
+                       getLastLocation()
+                    }
+
+//                    if(report.isAnyPermissionPermanentlyDenied){
+//                        Toast.makeText(this@ScanActivity, "You have denied location permission. Please enable them as it is mandatory for the app to work.", Toast.LENGTH_SHORT).show()
+//                    }
+
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    permissions: MutableList<PermissionRequest>?,
+                    token: PermissionToken?
+                ) {
+                    showRationDialogForPermissions()
+                }
+
+            }).onSameThread().check()
+
+        }
+
+
+
+
+
+
     }
 
 
     private fun getLastLocation() {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
         ) {
             fusedLocationProviderClient!!.getLastLocation()
                 .addOnSuccessListener { location ->
                     if (location != null) {
                         try {
-                            Toast.makeText(this@ScanActivity, "Worked", Toast.LENGTH_SHORT).show()
-                            binding.photoaddresss.setText("hello")
                             val geocoder = Geocoder(this@ScanActivity, Locale.getDefault())
                             val addresses: List<Address>? =
                                 geocoder.getFromLocation(location.latitude, location.longitude, 1)
@@ -122,37 +175,69 @@ class ScanActivity : AppCompatActivity() {
                         }
                     }
                 }
-        } else {
-            askPermission()
         }
     }
 
-    private fun askPermission() {
-        ActivityCompat.requestPermissions(
-            this@ScanActivity,
-            arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
-            REQUEST_CODE
-        )
+//    private fun askPermission() {
+//        ActivityCompat.requestPermissions(
+//            this@ScanActivity,
+//            arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
+//            REQUEST_CODE
+//        )
+//    }
+
+
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        if (requestCode == REQUEST_CODE) {
+//            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                getLastLocation()
+//            } else {
+//                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+//                startActivity(intent)
+//                Toast.makeText(
+//                    this@ScanActivity,
+//                    "Please provide the required permission",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//        }
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//    }
+
+
+    private fun isLocationEnabled(): Boolean{
+        // This provides access to the system location services.
+        val locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER)
     }
 
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        if (requestCode == REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getLastLocation()
-            } else {
-                Toast.makeText(
-                    this@ScanActivity,
-                    "Please provide the required permission",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    private fun showRationDialogForPermissions(){
+        AlertDialog.Builder(this)
+            .setMessage("It Looks like you have turned off permissions required for this feature. It can be enabled under Application Settings")
+            .setPositiveButton(
+                "GO TO SETTINGS"
+            ){ _, _, ->
+
+                try{
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    // we needed to give uri link of our app so that it opens the settings for our particular app
+                    val uri = Uri.fromParts("package", packageName, null)
+                    intent.data = uri
+                    startActivity(intent)
+                }catch (e: ActivityNotFoundException){
+                    e.printStackTrace()
+                }
+
+            }.setNegativeButton("Cancel"){ dialog, _ ->
+                dialog.dismiss()
+
+            }.show()
     }
 
     fun uploadImage(file: File , name : String, location : String) {

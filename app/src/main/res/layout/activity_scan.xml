@@ -59,8 +59,35 @@
 
 
 
+
+
 </com.google.android.material.textfield.TextInputLayout>
 
+
+    <LinearLayout
+        android:id="@+id/select_current_location"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:background="@drawable/select_location_background"
+        android:layout_marginTop="@dimen/_10sdp"
+
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/_7sdp"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="SELECT CURRENT LOCATION"
+            android:textSize="@dimen/_12ssp"
+            />
+
+    </LinearLayout>
 
 
 
