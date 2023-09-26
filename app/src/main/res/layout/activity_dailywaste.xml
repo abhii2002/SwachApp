@@ -21,7 +21,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview1"
             android:layout_width="170dp"
-            android:layout_height="300dp"
+            android:layout_height="280dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="15dp"
@@ -63,7 +63,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview3"
             android:layout_width="170dp"
-            android:layout_height="300dp"
+            android:layout_height="280dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="40dp"
             app:cardBackgroundColor="#AFCAFF"
@@ -105,7 +105,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview4"
             android:layout_width="170dp"
-            android:layout_height="300dp"
+            android:layout_height="280dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="12dp"
@@ -147,7 +147,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview2"
             android:layout_width="170dp"
-            android:layout_height="300dp"
+            android:layout_height="280dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
             app:cardBackgroundColor="#CDCDCD"
@@ -170,7 +170,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Black Dustbin"
                 android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -178,9 +178,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="80dp"
                 android:text="Needles, without\nSyringes,Blades\nSharps and all\nMetal Articles"
-                android:textSize="15dp"
-                android:textAlignment="center"/>
-
+                android:textAlignment="center"
+                android:textSize="15dp" />
 
 
         </androidx.cardview.widget.CardView>

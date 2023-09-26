@@ -37,6 +37,10 @@ class GuidelinesAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
                 holder.itemView.findViewById<LinearLayout>(R.id.linearL).background = ContextCompat.getDrawable(holder.itemView.context,
                     R.drawable.vertical_items_background_card_blue
                 )
+            }else {
+                holder.itemView.findViewById<LinearLayout>(R.id.linearL).background = ContextCompat.getDrawable(holder.itemView.context,
+                    R.drawable.vertical_items_background_card_pink
+                )
             }
         }
     }

@@ -49,7 +49,7 @@ import okhttp3.RequestBody
 import retrofit2.Retrofit
 import java.io.File
 import java.io.FileOutputStream
-
+import java.lang.Exception
 
 
 class ScanActivity : AppCompatActivity() {
@@ -93,10 +93,13 @@ class ScanActivity : AppCompatActivity() {
 
         val photoName = binding.photoname
         binding.submitBtn.setOnClickListener {
-            Toast.makeText(this,"Button clicked",Toast.LENGTH_SHORT).show()
             if(img!=null){
                 uploadImage(file, photoName.text.toString(), address!!)
             }
+
+            startActivity(Intent(this@ScanActivity, MainActivity::class.java))
+            finishAffinity()
+
 
         }
 
@@ -256,8 +259,13 @@ class ScanActivity : AppCompatActivity() {
         val part = MultipartBody.Part.createFormData("photo",file.name,requestBody)
 
         CoroutineScope(Dispatchers.IO).launch {
-            val res=service.uploadAttachment(name1,location1,part)
-            Log.d("imageres",res.toString())
+            try {
+                val res=service.uploadAttachment(name1,location1,part)
+                Log.d("imageres",res.toString())
+            }catch (e: Exception){
+                Toast.makeText(this@ScanActivity, e.message.toString(), Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 }

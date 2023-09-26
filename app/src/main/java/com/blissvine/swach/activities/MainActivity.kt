@@ -1,9 +1,13 @@
 package com.blissvine.swach.activities
 
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
@@ -49,31 +53,7 @@ class MainActivity : BaseActivity() {
             contracts.launch(imageUri)
         }
 
-        // guidlines adapter setup
 
-        val dummyGuidlinesData = listOf<GuideLinesModel>(
-            GuideLinesModel(
-                "Dummy text",
-                "daskdnidni lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
-            ),
-            GuideLinesModel(
-                "Dummy text",
-                "dasjdbsaudbauod lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
-            ),
-            GuideLinesModel(
-                "Dummy text",
-                "dsadasdasd lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
-            ),
-            GuideLinesModel(
-                "Dummy text",
-                "dasjdiabuab lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
-            ),
-            GuideLinesModel(
-                "Dummy text",
-                "dsadihdi lorem epsum jdnasido ehwiueh30 hfiewjfie dwdiaidna uienfd"
-            ),
-
-            )
 
 
         viewModel.guidelinesDetailsLiveData.observe(this@MainActivity){
@@ -94,6 +74,10 @@ class MainActivity : BaseActivity() {
             startActivity(Intent(this, RecycledWasteActivity::class.java))
         }
 
+        binding.notificationButton.setOnClickListener {
+              showPopDialog()
+        }
+
 
 
 
@@ -104,6 +88,26 @@ class MainActivity : BaseActivity() {
     fun createImageUri() : Uri? {
         val image= File(applicationContext.filesDir,"camera_photo.png")
         return FileProvider.getUriForFile(applicationContext,"com.blissvine.swach.fileProvider",image)
+    }
+
+
+    fun showPopDialog(){
+        val dialog = Dialog(this@MainActivity)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.custom_dialog_layout)
+        dialog.setCancelable(true)
+      //  val details = intent.getStringExtra("detailsComplete")
+        val details = "This is a notification message from backend side"
+        dialog.findViewById<TextView>(R.id.tv_ingredientsDialogBox).text = details
+
+
+        val cancelButton = dialog.findViewById<ImageView>(R.id.cancelDialogBox)
+        cancelButton.setOnClickListener{
+            dialog.dismiss()
+
+        }
+        dialog.show()
+
     }
 
 
