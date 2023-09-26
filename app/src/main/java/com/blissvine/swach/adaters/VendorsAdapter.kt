@@ -6,12 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.blissvine.swach.R
-import com.blissvine.swach.models.GuideLinesModel
 import com.blissvine.swach.models.VendorsModel
 
 class VendorsAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -34,8 +31,8 @@ class VendorsAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val vendorsList = vendorsList[position]
         if (holder is MyViewHolder){
-            holder.itemView.findViewById<TextView>(R.id.assigned_to).text = "Assigned to"
-            holder.itemView.findViewById<TextView>(R.id.vendors_name).text = vendorsList.vendorName
+            holder.itemView.findViewById<TextView>(R.id.assigned_to).text = vendorsList.vendorName
+            holder.itemView.findViewById<TextView>(R.id.vendors_rating).text = "3.0"
             holder.itemView.findViewById<ImageView>(R.id.iv_board_image).setImageDrawable(holder.itemView.context.getDrawable(vendorsList.vendorImage))
 
 

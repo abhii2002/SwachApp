@@ -30,21 +30,54 @@
             android:layout_marginStart="10dp"
             android:orientation="vertical">
 
-            <com.blissvine.lovelink.utils.HHTextViewBold
-                android:id="@+id/assigned_to"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/primary_text_color"
-                android:textSize="18sp"
-                tools:text="Assigned to"/>
+                android:layout_gravity="center">
 
-            <com.blissvine.lovelink.utils.HHTextView
-                android:id="@+id/vendors_name"
+                <com.blissvine.lovelink.utils.HHTextViewBold
+                    android:id="@+id/assigned_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_text_color"
+                    android:textSize="18sp"
+                    tools:text="Vendor Name"/>
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:src="@drawable/baseline_arrow_forward_ios_24"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/primary_text_color"
-                android:textSize="18sp"
-                tools:text="Vendor name"/>
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:src="@drawable/baseline_star_24"
+                    android:layout_gravity="center"/>
+
+                <com.blissvine.lovelink.utils.HHTextView
+                    android:id="@+id/vendors_rating"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:textColor="@color/primary_text_color"
+
+                    android:textSize="15sp"
+                    tools:text="3.0" />
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
