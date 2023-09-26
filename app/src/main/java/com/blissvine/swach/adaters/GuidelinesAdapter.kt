@@ -32,6 +32,7 @@ class GuidelinesAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
         if (holder is MyViewHolder){
             holder.itemView.findViewById<TextView>(R.id.guideline_title).text = guidelinesList.headline
             holder.itemView.findViewById<TextView>(R.id.guideline_notice).text = guidelinesList.guidelines
+            holder.itemView.findViewById<TextView>(R.id.guideline_timestamp).text = guidelinesList.date
 
             if(position % 2 == 0){
                 holder.itemView.findViewById<LinearLayout>(R.id.linearL).background = ContextCompat.getDrawable(holder.itemView.context,

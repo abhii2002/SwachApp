@@ -7,5 +7,5 @@ import retrofit2.Response
 class Repository(private val apiService: ApiService) {
 
 
-    suspend fun fetchGuidlines() : Response<List<GuideLinesModel>> = apiService.fetchGuidelines()
+    suspend fun fetchGuidelines() : Response<List<GuideLinesModel>> = apiService.fetchGuidelines()
 }

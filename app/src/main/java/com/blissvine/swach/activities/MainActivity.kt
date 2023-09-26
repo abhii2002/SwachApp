@@ -55,9 +55,9 @@ class MainActivity : BaseActivity() {
 
 
 
-
         viewModel.guidelinesDetailsLiveData.observe(this@MainActivity){
             if (it.isSuccessful){
+                Log.d("work", it.body().toString())
                 guidelinesAdapter.setData(it.body()!!)
                 binding.rvGuidlinesNotice.layoutManager =
                     LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)

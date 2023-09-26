@@ -282,7 +282,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_45sdp"
+                        android:layout_width="@dimen/_42sdp"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_gravity="center"
                         android:src="@drawable/smile_svgrepo_com"/>

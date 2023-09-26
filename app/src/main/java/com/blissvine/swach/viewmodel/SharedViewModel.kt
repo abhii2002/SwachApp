@@ -24,7 +24,7 @@ class SharedViewModel(private val repository: Repository = Repository(ApiClient.
     fun fetchGuidelines(){
         viewModelScope.launch {
             try {
-                val response = repository.fetchGuidlines()
+                val response = repository.fetchGuidelines()
                 guidelinesDetailsLiveData.value = response
 
             }catch (e: Exception){

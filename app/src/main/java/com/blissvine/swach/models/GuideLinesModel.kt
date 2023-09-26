@@ -7,5 +7,7 @@ data class GuideLinesModel(
     @Json(name = "headline")
     val headline: String,
     @Json(name = "guidelines")
-    val guidelines: String
+    val guidelines: String,
+    @Json(name = "date")
+    val date:  String
 )
