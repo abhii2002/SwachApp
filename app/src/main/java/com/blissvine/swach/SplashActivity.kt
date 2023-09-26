@@ -21,7 +21,15 @@ class SplashActivity : AppCompatActivity() {
 
                 startActivity(Intent(this@SplashActivity, MainActivity::class.java))
 
+<<<<<<< Updated upstream:app/src/main/java/com/blissvine/swach/SplashActivity.kt
                finish()
+=======
+
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            finish()
+
+
+>>>>>>> Stashed changes:app/src/main/java/com/blissvine/swach/activities/SplashActivity.kt
 
 
 
