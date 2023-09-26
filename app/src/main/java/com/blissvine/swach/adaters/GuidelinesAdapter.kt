@@ -30,8 +30,8 @@ class GuidelinesAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val guidelinesList = guidelinesList[position]
         if (holder is MyViewHolder){
-            holder.itemView.findViewById<TextView>(R.id.guideline_title).text = guidelinesList.title
-            holder.itemView.findViewById<TextView>(R.id.guideline_notice).text = guidelinesList.guidelinesNote
+            holder.itemView.findViewById<TextView>(R.id.guideline_title).text = guidelinesList.headline
+            holder.itemView.findViewById<TextView>(R.id.guideline_notice).text = guidelinesList.guidelines
 
             if(position % 2 == 0){
                 holder.itemView.findViewById<LinearLayout>(R.id.linearL).background = ContextCompat.getDrawable(holder.itemView.context,

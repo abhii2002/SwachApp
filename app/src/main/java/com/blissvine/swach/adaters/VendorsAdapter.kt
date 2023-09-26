@@ -39,18 +39,19 @@ class VendorsAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
             holder.itemView.findViewById<ImageView>(R.id.iv_board_image).setImageDrawable(holder.itemView.context.getDrawable(vendorsList.vendorImage))
 
 
-//            if(position % 2 == 0){
-//                holder.itemView.findViewById<LinearLayout>(R.id.linearL).background = ContextCompat.getDrawable(holder.itemView.context,
-//                    R.drawable.vertical_items_background_card_blue
-//                )
-//            }
+            holder.itemView.setOnClickListener {
+                if (onClickListener != null) {
+                    onClickListener!!.onClick(position, vendorsList)
+                }
+            }
+
         }
     }
 
 
 
     interface OnClickListener {
-        fun onClick(position: Int, model: GuideLinesModel)
+        fun onClick(position: Int, model: VendorsModel)
     }
 
     fun setOnClickListener(onClickListener: OnClickListener) {

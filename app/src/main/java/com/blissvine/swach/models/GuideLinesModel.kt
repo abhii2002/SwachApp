@@ -1,7 +1,11 @@
 package com.blissvine.swach.models
 
+import com.squareup.moshi.Json
+
 
 data class GuideLinesModel(
-    val title: String,
-    val guidelinesNote: String
+    @Json(name = "headline")
+    val headline: String,
+    @Json(name = "guidelines")
+    val guidelines: String
 )
