@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.blissvine.swach.R
 import com.blissvine.swach.models.GuideLinesModel
@@ -32,22 +34,23 @@ class VendorsAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val vendorsList = vendorsList[position]
         if (holder is MyViewHolder){
-            holder.itemView.findViewById<TextView>(R.id.vendor_name).text = "Assigned to"
-        //    holder.itemView.findViewById<TextView>(R.id.star_rating).text = vendorsList.vendorName
-            holder.itemView.findViewById<ImageView>(R.id.iv_vendor_photo).setImageDrawable(holder.itemView.context.getDrawable(vendorsList.vendorImage))
+            holder.itemView.findViewById<TextView>(R.id.assigned_to).text = "Assigned to"
+            holder.itemView.findViewById<TextView>(R.id.vendors_name).text = vendorsList.vendorName
+            holder.itemView.findViewById<ImageView>(R.id.iv_board_image).setImageDrawable(holder.itemView.context.getDrawable(vendorsList.vendorImage))
 
-            holder.itemView.setOnClickListener {
-                if (onClickListener != null) {
-                    onClickListener!!.onClick(position, vendorsList)
-                }
-            }
+
+//            if(position % 2 == 0){
+//                holder.itemView.findViewById<LinearLayout>(R.id.linearL).background = ContextCompat.getDrawable(holder.itemView.context,
+//                    R.drawable.vertical_items_background_card_blue
+//                )
+//            }
         }
     }
 
 
 
     interface OnClickListener {
-        fun onClick(position: Int, model: VendorsModel)
+        fun onClick(position: Int, model: GuideLinesModel)
     }
 
     fun setOnClickListener(onClickListener: OnClickListener) {

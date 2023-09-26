@@ -16,7 +16,7 @@
         android:padding="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_vendor_photo"
+            android:id="@+id/iv_board_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:contentDescription="image"
@@ -30,55 +30,21 @@
             android:layout_marginStart="10dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.blissvine.lovelink.utils.HHTextViewBold
+                android:id="@+id/assigned_to"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:textColor="@color/primary_text_color"
+                android:textSize="18sp"
+                tools:text="Assigned to"/>
 
-
-                <com.blissvine.lovelink.utils.HHTextViewBold
-                    android:id="@+id/vendor_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/primary_text_color"
-                    android:textSize="18sp"
-                    tools:text="Vendor Name"/>
-
-                <ImageView
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:src="@drawable/baseline_arrow_forward_ios_24"/>
-
-            </LinearLayout>
-
-
-            <LinearLayout
+            <com.blissvine.lovelink.utils.HHTextView
+                android:id="@+id/vendors_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-                <ImageView
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
-                    android:src="@drawable/baseline_star_24"
-                    android:layout_gravity="center"/>
-
-                <TextView
-                    android:id="@+id/rating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5.0"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:textSize="@dimen/_13ssp"/>
-
-
-            </LinearLayout>
-
-
+                android:textColor="@color/primary_text_color"
+                android:textSize="18sp"
+                tools:text="Vendor name"/>
 
         </LinearLayout>
 

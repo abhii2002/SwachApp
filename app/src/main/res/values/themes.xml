@@ -7,4 +7,42 @@
     </style>
 
     <style name="Theme.Swach" parent="Base.Theme.Swach" />
+
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="Dialog.theme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+
+        <!--        <item name="colorAccent">@color/colorPrimary</item>-->
+        <!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@transition/explode</item>
+        <item name="android:windowExitTransition">@transition/explode</item>
+
+
+
+    </style>
+
+
+    <style name="BaseAppTheme" parent="android:Theme.Material">
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@id/transition_current_scene</item>
+        <item name="android:windowExitTransition">@transition/explode</item>
+
+        <!--        &lt;!&ndash; specify shared element transitions &ndash;&gt;-->
+        <!--        <item name="android:windowSharedElementEnterTransition">-->
+        <!--            @transition/change_image_transform</item>-->
+        <!--        <item name="android:windowSharedElementExitTransition">-->
+        <!--            @transition/change_image_transform</item>-->
+    </style>
+
 </resources>

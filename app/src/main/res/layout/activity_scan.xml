@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageViewscan"
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/colorPrimary"
+        app:hintTextColor="@color/colorPrimary"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        >
+
+        <com.blissvine.swach.utils.HHEditText
+            android:id="@+id/photoname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/_11sdp"
+            android:hint="Name"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+  <com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+      android:layout_height="@dimen/_90sdp"
+      app:boxStrokeColor="@color/colorPrimary"
+      app:hintTextColor="@color/colorPrimary"
+      android:layout_marginEnd="@dimen/_30sdp"
+      android:layout_marginStart="@dimen/_30sdp"
+    android:layout_marginTop="@dimen/_25sdp">
+
+
+    <com.blissvine.swach.utils.HHEditText
+        android:id="@+id/photoaddresss"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:hint="Address"
+        android:padding="@dimen/_11sdp"
+        android:focusable="false"
+        android:inputType="textMultiLine" />
+
+
+
+</com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:id="@+id/select_current_location"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:background="@drawable/select_location_background"
+        android:layout_marginTop="@dimen/_10sdp"
+
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/_7sdp"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="SELECT CURRENT LOCATION"
+            android:textSize="@dimen/_12ssp"
+            />
+
+    </LinearLayout>
+
+    <com.blissvine.swach.utils.HHButton
+        android:id="@+id/submitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
+
+        android:layout_gravity="center"
+        android:text="Submit"
+        android:textColor="@color/white"
+       android:background="@drawable/button_background"/>
+
+</LinearLayout>

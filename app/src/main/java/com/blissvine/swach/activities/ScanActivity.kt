@@ -49,7 +49,7 @@ import okhttp3.RequestBody
 import retrofit2.Retrofit
 import java.io.File
 import java.io.FileOutputStream
-import java.lang.Exception
+
 
 
 class ScanActivity : AppCompatActivity() {
@@ -256,13 +256,8 @@ class ScanActivity : AppCompatActivity() {
         val part = MultipartBody.Part.createFormData("photo",file.name,requestBody)
 
         CoroutineScope(Dispatchers.IO).launch {
-            try {
-
-                val res = service.uploadAttachment(name1, location1, part)
-                Log.d("imageres", res.toString())
-            }catch (e: Exception){
-                 // Log exception
-            }
+            val res=service.uploadAttachment(name1,location1,part)
+            Log.d("imageres",res.toString())
         }
     }
 }
