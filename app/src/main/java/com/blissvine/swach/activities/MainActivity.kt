@@ -75,10 +75,16 @@ class MainActivity : BaseActivity() {
 
             )
 
-        guidelinesAdapter.setData(dummyGuidlinesData)
-        binding.rvGuidlinesNotice.layoutManager =
-            LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
-        binding.rvGuidlinesNotice.adapter = guidelinesAdapter
+
+        viewModel.guidelinesDetailsLiveData.observe(this@MainActivity){
+            if (it.isSuccessful){
+                guidelinesAdapter.setData(it.body()!!)
+                binding.rvGuidlinesNotice.layoutManager =
+                    LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+                binding.rvGuidlinesNotice.adapter = guidelinesAdapter
+            }
+        }
+
 
         binding.dailyWaste.setOnClickListener {
             startActivity(Intent(this,DailyWasteActivity::class.java))
@@ -89,11 +95,7 @@ class MainActivity : BaseActivity() {
         }
 
 
-        viewModel.guidelinesDetailsLiveData.observe(this@MainActivity){
-             if (it.isSuccessful){
-                  Log.d("guidlines", it.body().toString())
-             }
-        }
+
 
 
 
