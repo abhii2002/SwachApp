@@ -45,7 +45,6 @@
     android:layout_marginTop="@dimen/_25sdp">
 
 
-
     <com.blissvine.swach.utils.HHEditText
         android:id="@+id/photoaddresss"
         android:layout_width="match_parent"
@@ -55,9 +54,6 @@
         android:padding="@dimen/_11sdp"
         android:focusable="false"
         android:inputType="textMultiLine" />
-
-
-
 
 
 
@@ -89,8 +85,6 @@
 
     </LinearLayout>
 
-
-
     <com.blissvine.swach.utils.HHButton
         android:id="@+id/submitBtn"
         android:layout_width="match_parent"
@@ -103,6 +97,5 @@
         android:text="Submit"
         android:textColor="@color/white"
        android:background="@drawable/button_background"/>
-
 
 </LinearLayout>

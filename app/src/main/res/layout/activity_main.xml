@@ -161,6 +161,7 @@
 
 
               <LinearLayout
+                  android:id="@+id/recycled_waste"
                   android:layout_width="@dimen/_45sdp"
                   android:layout_height="@dimen/_45sdp"
                   android:layout_marginStart="@dimen/_15sdp"
@@ -286,7 +287,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_16ssp"
                         android:textStyle="bold"
-                        android:text="$99.50"/>
+                        android:text="₹00.0"/>
 
 
 

@@ -106,8 +106,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 }
 
                 R.id.btn_login -> {
-
-
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }
