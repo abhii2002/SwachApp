@@ -20,12 +20,12 @@
             android:id="@+id/cardview1"
             android:layout_width="170dp"
             android:layout_height="280dp"
-            android:layout_marginStart="25dp"
+
+            app:layout_constraintEnd_toStartOf="@id/cardview2"
             android:layout_marginTop="40dp"
-            android:layout_marginEnd="15dp"
             app:cardBackgroundColor="#B5E47D"
             app:cardCornerRadius="30dp"
-            app:layout_constraintEnd_toStartOf="@id/cardview2"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -62,12 +62,12 @@
             android:id="@+id/cardview3"
             android:layout_width="170dp"
             android:layout_height="280dp"
-            android:layout_marginStart="25dp"
+
             android:layout_marginTop="40dp"
             app:cardBackgroundColor="#AFCAFF"
             app:cardCornerRadius="30dp"
-            app:layout_constraintEnd_toStartOf="@id/cardview4"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cardview4"
             app:layout_constraintTop_toBottomOf="@+id/cardview1">
 
             <ImageView
@@ -104,7 +104,6 @@
             android:id="@+id/cardview4"
             android:layout_width="170dp"
             android:layout_height="280dp"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="12dp"
             app:cardBackgroundColor="#F0FB80"
@@ -146,10 +145,10 @@
             android:id="@+id/cardview2"
             android:layout_width="170dp"
             android:layout_height="280dp"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
             app:cardBackgroundColor="#CDCDCD"
             app:cardCornerRadius="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardview1"
             app:layout_constraintTop_toTopOf="parent">
 
